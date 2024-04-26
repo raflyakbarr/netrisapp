@@ -1,11 +1,12 @@
 Jenkinsfile (Declarative Pipeline)
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'node:20.11.1-alpine3.19' } }
+    agent any
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm install' 
+                archiveArtifacts artifacts: 'project-terbaru.zip', fingerprint: true 
             }
         }
     }
